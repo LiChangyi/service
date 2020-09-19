@@ -8,7 +8,7 @@ const config: IConfig = {
   },
   redis: {
     host: '127.0.0.1',
-    password: '',
+    password: 'root',
   },
 };
 

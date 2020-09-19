@@ -9,6 +9,9 @@ export default () => new Promise<Connection>((resolve, reject) => {
     user: config.mongodb.user,
     pass: config.mongodb.password,
     useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
   });
   const { connection } = mongoose;
   connection.on('connected', () => {
