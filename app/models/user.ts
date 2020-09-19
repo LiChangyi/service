@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { md5 } from '../common/func';
+
+import { md5 } from '@/utils/func';
 
 const userSchema = new Schema({
   username: {

@@ -1,7 +1,7 @@
 import { Context } from 'koa';
 
 import { RESPONSE_CODE_MAP } from '@/common/const';
-import { getUpdateBasePath, imageTranscodeToWebp } from '@/common/file';
+import { getUpdateBasePath, imageTranscodeToWebp } from '@/utils/file';
 import { updatePayload } from './paramsValidate';
 
 export default <IRouteConfig> {

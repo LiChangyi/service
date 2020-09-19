@@ -1,5 +1,5 @@
 import { RESPONSE_CODE_MAP } from '@/common/const';
-import { deleteFile } from '@/common/file';
+import { deleteFile } from '@/utils/file';
 import { Context } from 'koa';
 
 export default <IRouteConfig> {

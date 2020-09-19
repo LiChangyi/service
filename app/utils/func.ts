@@ -2,7 +2,7 @@ import { createHash } from 'crypto';
 import jwt from 'jsonwebtoken';
 import dayjs from 'dayjs';
 
-import { MD5_SUFFIX, TOKEN_SUFFIX, TOKEN_EXPIRES } from './const';
+import { MD5_SUFFIX, TOKEN_SUFFIX, TOKEN_EXPIRES } from '@/common/const';
 
 // 用户密码 md5 加密
 export const md5 = (str: string) => {

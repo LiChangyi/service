@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-import { NO_LOG_INTERFACE_LIST } from '../common/const';
+import { NO_LOG_INTERFACE_LIST } from '@/common/const';
 
 export default async (ctx: Context, next: any) => {
   const startAt = Date.now();

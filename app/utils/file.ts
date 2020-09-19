@@ -5,7 +5,7 @@ import { execFileSync } from 'child_process';
 
 import models from '@/models';
 import logger from '@/utils/logger';
-import { FILE_SAVE_DIR } from './const';
+import { FILE_SAVE_DIR } from '@/common/const';
 import { genId } from './func';
 
 export const getUpdateBasePath = (type) => (

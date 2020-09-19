@@ -6,7 +6,7 @@ import {
 } from 'redis';
 import { promisifyAll } from 'bluebird';
 
-import logger from '../utils/logger';
+import logger from '@/utils/logger';
 import config from '../../config';
 
 let client: RedisClient | null = null;

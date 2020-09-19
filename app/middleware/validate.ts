@@ -2,8 +2,8 @@ import _ from 'lodash';
 import { Context } from 'koa';
 import { ValidationError } from 'joi';
 
-import { RESPONSE_CODE_MAP } from '../common/const';
-import { validateToken } from '../common/func';
+import { RESPONSE_CODE_MAP } from '@/common/const';
+import { validateToken } from '@/utils/func';
 
 const authValidate = async (ctx: Context, auth: TRole[]): Promise<Boolean | TCtxUser> => {
   const token = ctx.get('token');

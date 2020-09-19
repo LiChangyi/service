@@ -1,6 +1,7 @@
 import { Context } from 'koa';
-import response from '../utils/response';
-import { RESPONSE_CODE_MAP } from '../common/const';
+
+import response from '@/utils/response';
+import { RESPONSE_CODE_MAP } from '@/common/const';
 
 export default async (ctx: Context, next: Function) => {
   // 植入 success 和 error 2个方法

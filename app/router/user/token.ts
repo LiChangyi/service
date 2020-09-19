@@ -1,8 +1,8 @@
 import { Context } from 'koa';
 
+import { PWD_ERROR } from '@/common/const';
+import { convertTime, md5, createToken } from '@/utils/func';
 import { tokenPayload } from './paramsValidate';
-import { PWD_ERROR } from '../../common/const';
-import { convertTime, md5, createToken } from '../../common/func';
 
 const route: IRouteConfig = {
   method: 'post',

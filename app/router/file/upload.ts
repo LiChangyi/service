@@ -5,9 +5,9 @@ import _ from 'lodash';
 import { RESPONSE_CODE_MAP } from '@/common/const';
 import {
   calcFileMd5, handleFileType, imageTranscodeToWebp, moveFile,
-} from '@/common/file';
+} from '@/utils/file';
 
-import { genId } from '@/common/func';
+import { genId } from '@/utils/func';
 import { uploadPayload } from './paramsValidate';
 
 export default <IRouteConfig> {

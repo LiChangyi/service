@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-import { md5 } from '@/common/func';
+import { md5 } from '@/utils/func';
 import { RESPONSE_CODE_MAP } from '@/common/const';
 import { updatePayload } from './paramsValidate';
 

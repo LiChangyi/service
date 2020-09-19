@@ -1,7 +1,7 @@
 import mongoose, { Connection } from 'mongoose';
 
+import logger from '@/utils/logger';
 import config from '../../config';
-import logger from '../utils/logger';
 
 export default () => new Promise<Connection>((resolve, reject) => {
   mongoose.connect(config.mongodb.url, {

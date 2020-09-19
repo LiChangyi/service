@@ -1,6 +1,6 @@
 import KoaRouter from 'koa-router';
 
-import validateMiddleWare from '../../middleware/validate';
+import validateMiddleWare from '@/middleware/validate';
 import token from './token';
 import detail from './detail';
 import update from './update';
