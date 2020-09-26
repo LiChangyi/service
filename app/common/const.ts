@@ -25,6 +25,8 @@ export const MD5_SUFFIX = process.env.BLOG_MD5_SUFFIX || '7C1AA485-02C6-4E51-B0E
 export const TOKEN_SUFFIX = process.env.BLOG_TOKEN_SUFFIX || 'A24DC475-5D65-425D-8665-7010BE315D9E';
 // token 的过期时间
 export const TOKEN_EXPIRES = '30d';
+// 离过期时间刷新：离过期 7天。单位秒和 jwt 保持一致
+export const TOKEN_REFRESH_DDL = 7 * 24 * 60 * 60;
 // 密码输入错误的配置信息
 export const PWD_ERROR = {
   count: 10,

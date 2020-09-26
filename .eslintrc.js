@@ -16,5 +16,6 @@ module.exports = {
     'no-unused-vars': 'off',
     'newline-per-chained-call': ['error', { ignoreChainWithDepth: 1 }],
     'no-underscore-dangle': ['error', { allow: ['_id'] }],
+    'max-len': ['error', { code: 150 }],
   },
 };

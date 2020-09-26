@@ -1,18 +1,32 @@
 import _ from 'lodash';
 import { Context } from 'koa';
 import { ValidationError } from 'joi';
+// import dayjs from 'dayjs';
 
-import { RESPONSE_CODE_MAP } from '@/common/const';
-import { validateToken } from '@/utils/func';
+import { RESPONSE_CODE_MAP, TOKEN_REFRESH_DDL } from '@/common/const';
+import { createToken, validateToken } from '@/utils/func';
+import { isTCtxUser } from '@/common/isType';
 
-const authValidate = async (ctx: Context, auth: TRole[]): Promise<Boolean | TCtxUser> => {
+const authValidate = async (ctx: Context, auth: TRole[]): Promise<Boolean> => {
   const token = ctx.get('token');
   if (!token) {
     ctx.error(RESPONSE_CODE_MAP.NO_LOGIN);
     return false;
   }
   const res = await validateToken(token, auth);
-  return res;
+  if (isTCtxUser(res)) {
+    // 如果快要过期了，更新 token
+    if ((res.exp - Date.now() / 1000) <= TOKEN_REFRESH_DDL) {
+      const newToken = await createToken({
+        _id: res.uid,
+        nickname: res.nickname,
+        role: res.role,
+      });
+      ctx.append('refreshToken', newToken);
+    }
+    return true;
+  }
+  return false;
 };
 
 export default (validate: IRouteConfig['validate']): any => async (ctx: Context, next: any) => {
@@ -22,11 +36,10 @@ export default (validate: IRouteConfig['validate']): any => async (ctx: Context,
 
   // 校验权限
   if (auth.length) {
-    const ctxUser = await authValidate(ctx, auth);
-    if (!ctxUser) {
+    const hasAuth = await authValidate(ctx, auth);
+    if (!hasAuth) {
       return;
     }
-    ctx.user = ctxUser as TCtxUser;
   }
 
   // 参数校验

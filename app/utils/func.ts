@@ -1,6 +1,7 @@
 import { createHash } from 'crypto';
 import jwt from 'jsonwebtoken';
 import dayjs from 'dayjs';
+import { Types } from 'mongoose';
 
 import { MD5_SUFFIX, TOKEN_SUFFIX, TOKEN_EXPIRES } from '@/common/const';
 
@@ -20,7 +21,11 @@ export const convertTime = (startAt: number, interval: number): string => {
 };
 
 // 生成 token
-export const createToken = async (user: IUser) => {
+export const createToken = async (user: {
+  _id: Types.ObjectId | string,
+  role?: TRole,
+  nickname: string
+}) => {
   const token = await jwt.sign({
     uid: user._id,
     role: user.role,
@@ -33,7 +38,7 @@ export const createToken = async (user: IUser) => {
 // 校验 token
 export const validateToken = async (token: string, auth: TRole[]): Promise<Boolean | TCtxUser> => {
   try {
-    const ctxUser: TCtxUser = await jwt.verify(token, TOKEN_SUFFIX);
+    const ctxUser: TCtxUser = await jwt.verify(token, TOKEN_SUFFIX) as TCtxUser;
     if (!auth.includes(ctxUser.role)) {
       return false;
     }
