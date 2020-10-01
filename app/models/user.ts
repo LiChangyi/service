@@ -19,8 +19,6 @@ const userSchema = new Schema({
     type: String,
     default: 'user',
   },
-}, {
-  versionKey: false,
 });
 
 userSchema.pre('validate', function (this: IUserDocument, next: Function) {

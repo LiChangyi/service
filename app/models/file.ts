@@ -42,7 +42,6 @@ const schema = new Schema({
     default: '',
   },
 }, {
-  versionKey: false,
   timestamps: true,
 });
 

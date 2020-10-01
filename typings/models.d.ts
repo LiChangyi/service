@@ -8,9 +8,8 @@ declare global {
     password: string;
     role?: 'admin' | 'user';
   }
-  interface IUserDocument extends Document, IUser {
+  interface IUserDocument extends Document, IUser {}
 
-  }
   interface IFile {
     _id: Types.ObjectId;
     size: number;
@@ -24,12 +23,30 @@ declare global {
     }[],
     remark?: string;
   }
-  interface IFileDocument extends Document, IFile {
+  interface IFileDocument extends Document, IFile {}
 
+  interface ITag {
+    name: string;
+    description: string;
   }
-  type IUserModel = Model<IUserDocument>;
+  interface ITagDocument extends Document, ITag {}
+
+  interface IArticle {
+    title: string;
+    content: string;
+    description: string;
+    tags: [ITag];
+    status: number;
+    recommend: boolean;
+    cover: string;
+    createdAt: Date;
+  }
+  interface IArticleDocument extends Document, IArticle {}
+
   interface IModels {
-    User: IUserModel;
-    File: Model<IFileDocument>
+    User: Model<IUserDocument>;
+    File: Model<IFileDocument>;
+    Tag: Model<ITagDocument>;
+    Article: Model<IArticleDocument>;
   }
 }

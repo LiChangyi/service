@@ -6,7 +6,7 @@ import os from 'os';
  */
 export const RESPONSE_CODE_MAP: Record<string, [number, string]> = {
   PARAMS_ERROR: [400, '参数错误'],
-  USERNAME_EXIST: [400, 'username 已存在!'],
+  USERNAME_EXIST: [400, 'username 已存在'],
   PASSWORD_ERROR: [400, '账号密码错误'],
   OLD_PASSWORD_ERROR: [400, '原密码错误'],
   NEW_PASSWORD_ERROR: [400, '新密码不能为空'],
@@ -14,6 +14,7 @@ export const RESPONSE_CODE_MAP: Record<string, [number, string]> = {
   SELECT_MULTIPLE_FILE: [400, '请选择单个文件'],
   UNSUPPORTED_FILE_TYPE: [400, '不支持的文件类型，请重新选择文件'],
   FILE_NOT_EXISTENT: [400, '文件不存在'],
+  NAME_EXIST: [400, 'name 已存在'],
   NO_LOGIN: [401, '用户没有登录'],
   NO_AUTH: [403, '没有访问权限'],
   SERVER_INNER_ERROR: [500, '服务内部错误'],

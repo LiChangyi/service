@@ -40,11 +40,12 @@ export const validateToken = async (token: string, auth: TRole[]): Promise<Boole
   try {
     const ctxUser: TCtxUser = await jwt.verify(token, TOKEN_SUFFIX) as TCtxUser;
     if (!auth.includes(ctxUser.role)) {
+      // 权限不足
       return false;
     }
     return ctxUser;
   } catch (err) {
-    // noop
+    // 解析失败了
   }
   return false;
 };

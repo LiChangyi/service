@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import { Context } from 'koa';
 import { ValidationError } from 'joi';
-// import dayjs from 'dayjs';
 
 import { RESPONSE_CODE_MAP, TOKEN_REFRESH_DDL } from '@/common/const';
 import { createToken, validateToken } from '@/utils/func';
@@ -10,7 +9,6 @@ import { isTCtxUser } from '@/common/isType';
 const authValidate = async (ctx: Context, auth: TRole[]): Promise<Boolean> => {
   const token = ctx.get('token');
   if (!token) {
-    ctx.error(RESPONSE_CODE_MAP.NO_LOGIN);
     return false;
   }
   const res = await validateToken(token, auth);
@@ -24,6 +22,7 @@ const authValidate = async (ctx: Context, auth: TRole[]): Promise<Boolean> => {
       });
       ctx.append('refreshToken', newToken);
     }
+    ctx.user = res;
     return true;
   }
   return false;
@@ -38,6 +37,7 @@ export default (validate: IRouteConfig['validate']): any => async (ctx: Context,
   if (auth.length) {
     const hasAuth = await authValidate(ctx, auth);
     if (!hasAuth) {
+      ctx.error(RESPONSE_CODE_MAP.NO_LOGIN);
       return;
     }
   }
